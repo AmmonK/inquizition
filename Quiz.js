@@ -5,9 +5,9 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
-import data from './data';
+import data from './data/data2';
 
-class Question extends React.Component {
+export default class Quiz extends React.Component {
 
   constructor(props){
     super(props);
@@ -61,5 +61,3 @@ class Question extends React.Component {
     )
   }
 }
-
-export default Question;

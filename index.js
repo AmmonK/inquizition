@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 import './style.css';
-import Question from "./Question"
+import Quiz from "./Quiz"
 
 class App extends Component {
   constructor() {
@@ -14,7 +14,7 @@ class App extends Component {
   render() {
     return (
       <div>
-      <Question/>
+      <Quiz/>
       </div>
     );
   }
