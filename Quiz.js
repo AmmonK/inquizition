@@ -5,10 +5,10 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
-import LinearProgress from '@material-ui/core/LinearProgress';
 import data from './data/data2';
 import CorrectButton from './CorrectButton';
 import IncorrectButton from './IncorrectButton';
+import ProgressIndicator from './ProgressIndicator'
 
 export default class Quiz extends React.Component {
 
@@ -18,7 +18,6 @@ export default class Quiz extends React.Component {
       questions:data,
       currentQuestion:0,
       showAnswer:false,
-      progress: 0
     }
   }
 
@@ -35,17 +34,17 @@ export default class Quiz extends React.Component {
   }
 
   markCorrect = () => {
-    let tmp = this.state.questions;
-    tmp[this.state.currentQuestion].correct = true;
-    let progress = tmp.filter(x => x.correct==true).length / tmp.length;
-    this.setState({questions:tmp,progress: progress});
+    this.mark(true);
   }
 
   markIncorrect = () => {
+    this.mark(false);
+  }
+
+  mark = (status) => {
     let tmp = this.state.questions;
-    tmp[this.state.currentQuestion].correct = false;
-    let progress = tmp.filter(x => x.correct==true).length / tmp.length;
-    this.setState({questions:tmp,progress: progress});
+    tmp[this.state.currentQuestion].correct = status
+    this.setState({questions:tmp});
   }
 
   shuffle(arr){    
@@ -56,7 +55,7 @@ export default class Quiz extends React.Component {
   render() {
     return (
       <>
-        <LinearProgress variant="determinate" value={this.state.progress*100} />
+      <ProgressIndicator q={this.state.questions} currentQ={this.state.currentQuestion}/>
       <Card>      
         <CardContent>
           <Typography variant="h4" color="primary">Question #{this.state.currentQuestion+1} of {this.state.questions.length}</Typography>
